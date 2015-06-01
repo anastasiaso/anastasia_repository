@@ -1,0 +1,57 @@
+<html>
+ <head>
+   <link rel="stylesheet" type="text/css" href="resources/css/styles.css">
+     <script type="text/javascript" src="resources/js/scripts.js"></script>
+    <title> 
+     Anastasia's chat
+    </title>
+    <style>
+       body { url(bg1.jpg); }
+    </style>
+ </head>
+ <body onload="run()">
+ <div id = "page">
+   <div class="header" id  = "fontA" ><h1 align = center >C H A T</h1></div>
+  <div id="incoming_messages" class="scroll" >
+  </div>
+  <div id="outgoing_messages">
+    <table>
+      <tr>
+        <td>
+	  <input type="text" class="message_box" id="message_area" value="Enter message" onfocus="if(this.value==this.defaultValue)this.value='';" 
+				onfocus="if(this.value==this.defaultValue)this.value='';" 
+				onblur="if(this.value=='')this.value=this.defaultValue;">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p align=right>
+	    <input type="button" value="OK" class = "hide" id="end_edit" >
+            <input type="button" value="Send a message" id = "sent_button" onclick='sent()'>
+          </p>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div id="login">
+    <p>
+      <input type="text" id="name" value="  Login"  
+                                onfocus="if(this.value==this.defaultValue)this.value='';" 
+				onblur="if(this.value=='')this.value=this.defaultValue;">
+    </p>
+    <p>
+      <input type="button" id="fontButton" value="Log in" onclick='log()'>
+    </p>
+  </div>
+  <div id="exit">
+    <p id="text_exit">
+    </p>
+	<input type="text" id="edit" >
+	<input type="button" id="edit_ok" value="ok" onclick='ok_edit()'>
+	<input type="button" value="Exit" onclick='exit()' id="exit_button">
+	<input type="button" value="Edit" onclick='edit()' id="edit_button">
+  </div>
+
+ </div>
+ </body>
+</html>
