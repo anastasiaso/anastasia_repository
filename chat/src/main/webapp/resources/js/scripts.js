@@ -85,9 +85,6 @@ function exit()
 		exit_window.style.display = 'none';
 		var log_window = document.getElementById('login');
 		log_window.style.display = 'inline';
-		document.getElementById('incoming_messages').innerHTML = "";
-		var users = document.getElementById('users_holder');
-		users.innerHTML = "";
 }
 function edit()
 {
@@ -122,9 +119,6 @@ function ok_edit()
 			text_exit.appendChild(text);
 			div_exit.removeChild(old_text_exit);
 			div_exit.insertBefore(text_exit, div_exit.firstChild);
-			var users = document.getElementById('users_holder');
-			users.childNodes[1].innerHTML = login;
-            appState.userName = login;
 	}
 }
 

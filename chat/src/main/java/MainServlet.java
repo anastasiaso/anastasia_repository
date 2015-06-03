@@ -18,11 +18,11 @@ import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-//import org.apache.log4j.Logger;
+import org.apache.log4j.Logger;
 
 @WebServlet(urlPatterns = "/chat")
 public class MainServlet extends HttpServlet {
-    //private static Logger logger = Logger.getLogger(MainServlet.class.getName());
+    private static Logger logger = Logger.getLogger(MainServlet.class.getName());
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -40,11 +40,11 @@ public class MainServlet extends HttpServlet {
             resp.setStatus(HttpServletResponse.SC_OK);
 
         } catch (ParseException e) {
-            System.out.println("badRequest");
+            logger.error(e);
             resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
         }
         catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.error(e);
             resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
         }
     }
@@ -63,9 +63,11 @@ public class MainServlet extends HttpServlet {
                 out.print(messages);
                 out.flush();
             } else {
+                logger.error("'token' parameter needed");
                 resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "'token' parameter needed");
             }
         } catch (Exception e) {
+            logger.error(e);
             resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
         }
     }
@@ -76,9 +78,8 @@ public class MainServlet extends HttpServlet {
         try {
             loadHistory();
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.error(e);
         }
-        System.out.println("init");
     }
 
 
@@ -91,7 +92,8 @@ public class MainServlet extends HttpServlet {
 
     private void loadHistory() throws SAXException, IOException, ParserConfigurationException, TransformerException {
         if (!XMLHistoryUtil.doesStorageExist()) {
-            XMLHistoryUtil.createStorage();
+            String path = this.getServletContext().getRealPath("") + "../../src/main/webapp/history.xml";
+            XMLHistoryUtil.createStorage(path);
         }
     }
 }

@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class XMLHistoryUtil {
-    private static final String STORAGE_LOCATION = "E:\\chat\\history.xml";
+    private static String STORAGE_LOCATION = "";
     private static final String MESSAGES = "messages";
     private static final String MESSAGE = "message";
     private static final String ID = "id";
@@ -28,7 +28,8 @@ public class XMLHistoryUtil {
     private static final String TEXT = "text";
     private static final String DATE = "date";
 
-    public static synchronized void createStorage() throws ParserConfigurationException, TransformerException {
+    public static synchronized void createStorage(String path) throws ParserConfigurationException, TransformerException {
+        STORAGE_LOCATION = path;
         DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
 
@@ -81,13 +82,6 @@ public class XMLHistoryUtil {
 
         StreamResult result = new StreamResult(STORAGE_LOCATION);
         transformer.transform(source, result);
-    }
-
-
-    private static Node getNodeById(Document document, String id) throws XPathExpressionException {
-        XPath xPath = XPathFactory.newInstance().newXPath();
-        XPathExpression xPathExpression = xPath.compile("//" + MESSAGE + "[@id='" + id + "']");
-        return (Node) xPathExpression.evaluate(document, XPathConstants.NODE);
     }
 
     public static synchronized boolean doesStorageExist() {

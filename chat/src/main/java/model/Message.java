@@ -16,7 +16,7 @@ public class Message {
         this.date = getNewDate();
     }
 
-    public String getNewDate(){
+    public static String getNewDate(){
         Date date = new Date();
         SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy hh:mm");
         return format.format(date);
