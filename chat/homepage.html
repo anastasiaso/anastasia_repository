@@ -52,10 +52,15 @@
 	
 		<div id="u1" >
 			<input  id="u1_input" 
+				<!--input names, ids, styles, etc must be user friendly and verbose.
+				u1_input - what is u1 ? -->
 				type="text" 
 				value="Enter message" 
 				onfocus="if(this.value==this.defaultValue)this.value='';" 
 				onblur="if(this.value=='')this.value=this.defaultValue;" 
+				<!--move these event handlers to js file and set it via addEventListener()
+				or at least create a function e.g. textOnFocusHandler() and
+				set it as handler using: onfocus="textOnFocusHandler()"-->
 			/>
 		</div>
 
